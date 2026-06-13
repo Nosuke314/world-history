@@ -17,5 +17,58 @@
     <button id="wrong">×</button>
 
     <button id="next">次へ</button>
+
+    <script>
+      const questions = [
+          {
+            question: "日本の首都は？",
+            answer: "東京"
+          },
+          {
+            question: "種の起源の著者は？",
+            answer: "ダーウィン"
+          }
+        ];
+      
+      let current;
+
+      function showQuestion() {
+        current =
+          questions[Math.floor(Math.random() * questions.length)];
+
+        document.getElementById("question").textContent =
+           current.question;
+
+        document.getElementById("answer").textContent = "";
+
+      }
+
+        document
+        .getElementById("showAnswer")
+        .addEventListener("click", () => {
+
+          document.getElementById("answer").textContent =
+            current.answer;
+
+        });
+
+      let correctCount = 0;
+        let wrongCount = 0;
+
+        document.getElementById("correct")
+          .addEventListener("click", () => {
+            correctCount++;
+          });
+
+        document.getElementById("wrong")
+          .addEventListener("click", () => {
+            wrongCount++;
+          });
+
+      document.getElementById("next")
+          .addEventListener("click", showQuestion);
+
+      showQuestion();
+    </script>
   </body>
 </html>
