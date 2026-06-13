@@ -16,6 +16,8 @@
     <button id="correct">○</button>
     <button id="wrong">×</button>
 
+    <p id="score">○: 0 ×: 0</p>
+
     <button id="next">次へ</button>
 
     <script>
@@ -33,15 +35,22 @@
       let current;
 
       function showQuestion() {
-        current =
-          questions[Math.floor(Math.random() * questions.length)];
 
-        document.getElementById("question").textContent =
-           current.question;
+          let index;
 
-        document.getElementById("answer").textContent = "";
+          do {
+            index = Math.floor(Math.random() * questions.length);
+          } while (index === previousIndex);
 
-      }
+          previousIndex = index;
+
+          current = questions[index];
+
+          document.getElementById("question").textContent =
+            current.question;
+
+          document.getElementById("answer").textContent = "";
+        }
 
         document
         .getElementById("showAnswer")
@@ -69,6 +78,11 @@
           .addEventListener("click", showQuestion);
 
       showQuestion();
+
+      document.getElementById("score").textContent =
+          `○: ${correctCount} ×: ${wrongCount}`;
+
+      let previousIndex = -1;
     </script>
   </body>
 </html>
