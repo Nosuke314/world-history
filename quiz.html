@@ -77,12 +77,25 @@
       document.getElementById("next")
           .addEventListener("click", showQuestion);
 
+      let previousIndex = -1;
+      
       showQuestion();
 
-      document.getElementById("score").textContent =
-          `○: ${correctCount} ×: ${wrongCount}`;
+      document.getElementById("correct")
+          .addEventListener("click", () => {
+            correctCount++;
 
-      let previousIndex = -1;
+            document.getElementById("score").textContent =
+              `○: ${correctCount} ×: ${wrongCount}`;
+          });
+
+      document.getElementById("wrong")
+          .addEventListener("click", () => {
+            wrongCount++;
+
+            document.getElementById("score").textContent =
+              `○: ${correctCount} ×: ${wrongCount}`;
+          });
     </script>
   </body>
 </html>
