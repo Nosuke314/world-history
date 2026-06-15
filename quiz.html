@@ -102,6 +102,24 @@ fetch(CSV_URL)
 
             showQuestion();
           });
+
+      const APP_VERSION = "0.1.0";
+
+      let saveData =
+          JSON.parse(localStorage.getItem("quizApp"));
+
+      if (!saveData) {
+          saveData = {
+            version: 0.1.0,
+            studyRecord: {}
+          };
+
+          localStorage.setItem(
+            "quizApp",
+            JSON.stringify(saveData)
+          );
+        }
+
     </script>
   </body>
 </html>
