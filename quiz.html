@@ -115,18 +115,14 @@ fetch(CSV_URL)
           if (isPlaying) {
             clearInterval(timer);
             isPlaying = false;
+            this.textContent = "START";
           }
           else {
             startTyping();
+            this.textContent = "STOP";
           }
 
         });
-
-      if (isPlaying) {
-        clearInterval(timer);
-        isPlaying = false;
-        this.textContent = "START";
-      }
       
       function getToday() {
           return new Date().toISOString().slice(0, 10);
