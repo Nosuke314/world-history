@@ -79,7 +79,30 @@ fetch(CSV_URL)
 
         });
 
+      let timer = null;
+      let currentText = "";
+      let currentIndex = 0;
+      let isPlaying = false;
 
+      function startTyping() {
+        isPlaying = true;
+
+        timer = setInterval(() => {
+          if (currentIndex >= current.question.length) {
+            clearInterval(timer);
+            isPlaying = false;
+            return;
+          }
+
+          currentText += current.question[currentIndex];
+          currentIndex++;
+
+          document.getElementById("question").textContent =
+            currentText;
+
+        }, 100);
+      }
+      
       function getToday() {
           return new Date().toISOString().slice(0, 10);
         }
