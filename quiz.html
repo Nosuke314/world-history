@@ -3,6 +3,22 @@
   <head>
     <meta charset="UTF-8">
     <title>世界史一問一答</title>
+    <style>
+      #tabBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+
+  display: flex;
+}
+
+#tabBar button {
+  flex: 1;
+  height: 60px;
+}
+      </style>
   </head>
   <body>
     <h1>一問一答</h1>
@@ -25,6 +41,23 @@
     <p id="todayRecord"></p>
 
     <p id="version"></p>
+
+    <div id="quizPage">
+  <!-- 今の問題ページ -->
+</div>
+
+<div id="recordPage" style="display:none;">
+  <h2>学習記録</h2>
+
+  <canvas id="accuracyChart"></canvas>
+
+  <p id="todayRecord"></p>
+</div>
+
+<nav id="tabBar">
+  <button id="quizTab">📖 問題</button>
+  <button id="recordTab">📊 記録</button>
+</nav>
 
     <script>
       let questions = [];
@@ -179,7 +212,7 @@ fetch(CSV_URL)
             showQuestion();
           });
 
-      const APP_VERSION = "0.1.0";
+      const APP_VERSION = "0.1.1";
       const SAVE_VERSION = 1;
       
       let saveData =
