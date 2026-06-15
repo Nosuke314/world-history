@@ -84,8 +84,6 @@
 
         accuracyChart.update();
       }
-
-      updateChart();
       
       let questions = [];
 
@@ -279,6 +277,7 @@ fetch(CSV_URL)
         }
 
       updateTodayRecord();
+      updateChart();
 
       document.getElementById("quizTab")
   .addEventListener("click", () => {
