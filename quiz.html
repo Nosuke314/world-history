@@ -59,7 +59,34 @@
   <button id="recordTab">📊 記録</button>
 </nav>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <script>
+      const ctx =
+        document.getElementById("accuracyChart");
+
+      const accuracyChart =
+        new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: ["正解", "不正解"],
+            datasets: [{
+              data: [0, 0]
+            }]
+          }
+        });
+
+      function updateChart() {
+        accuracyChart.data.datasets[0].data = [
+          correctCount,
+          wrongCount
+        ];
+
+        accuracyChart.update();
+      }
+
+      updateChart();
+      
       let questions = [];
 
       const CSV_URL =
@@ -196,6 +223,10 @@ fetch(CSV_URL)
             updateTodayRecord();
 
             showQuestion();
+
+            correctCount++;
+
+            updateChart();
           });
 
       document.getElementById("wrong")
@@ -210,6 +241,10 @@ fetch(CSV_URL)
             updateTodayRecord();
 
             showQuestion();
+
+            wrongCount++;
+
+            updateChart();
           });
 
       const APP_VERSION = "0.1.1";
