@@ -21,16 +21,30 @@
     <button id="next">次へ</button>
 
     <script>
-      const questions = [
-          {
-            question: "日本の首都は？",
-            answer: "東京"
-          },
-          {
-            question: "種の起源の著者は？",
-            answer: "ダーウィン"
-          }
-        ];
+      let questions = [];
+
+      const CSV_URL =
+        "https://docs.google.com/spreadsheets/d/1eNS2fFJfqQBNNwb1vo90qftKZvcm5fRhXa7hTcu299w/gviz/tq?tqx=out:csv";
+
+fetch(CSV_URL)
+  .then(response => response.text())
+  .then(text => {
+
+    const rows = text.trim().split("\n");
+
+    for (let i = 1; i < rows.length; i++) {
+      const cols = rows[i].split(",");
+
+      questions.push({
+        range: cols[0],
+        difficulty: cols[1],
+        question: cols[2],
+        answer: cols[3]
+      });
+    }
+
+    showQuestion();
+  });
       
       let current;
 
@@ -68,8 +82,6 @@
           .addEventListener("click", showQuestion);
 
       let previousIndex = -1;
-      
-      showQuestion();
 
       document.getElementById("correct")
           .addEventListener("click", () => {
