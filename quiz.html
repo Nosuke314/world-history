@@ -20,6 +20,8 @@
 
     <button id="next">次へ</button>
 
+    <p id="todayRecord"></p>
+
     <p id="version"></p>
 
     <script>
@@ -77,6 +79,26 @@ fetch(CSV_URL)
 
         });
 
+
+      function getToday() {
+          return new Date().toISOString().slice(0, 10);
+        }
+
+      function saveStudyRecord() {
+          const today = getToday();
+
+          if (!saveData.studyRecord[today]) {
+            saveData.studyRecord[today] = 0;
+          }
+
+          saveData.studyRecord[today]++;
+
+          localStorage.setItem(
+            "quizApp",
+            JSON.stringify(saveData)
+          );
+        }
+      
       let correctCount = 0;
         let wrongCount = 0;
 
@@ -92,6 +114,10 @@ fetch(CSV_URL)
             document.getElementById("score").textContent =
               `○: ${correctCount} ×: ${wrongCount}`;
 
+            saveStudyRecord();
+
+            updateTodeyRecord();
+
             showQuestion();
           });
 
@@ -101,6 +127,10 @@ fetch(CSV_URL)
 
             document.getElementById("score").textContent =
               `○: ${correctCount} ×: ${wrongCount}`;
+
+            saveStudyRecord();
+
+            updateTodayRecord();
 
             showQuestion();
           });
@@ -113,7 +143,7 @@ fetch(CSV_URL)
 
       if (!saveData) {
           saveData = {
-            version: "0.1.0",
+            version: SAVE_VERSION,
             studyRecord: {}
           };
 
@@ -125,6 +155,18 @@ fetch(CSV_URL)
 
       document.getElementById("version").textContent =
           `Version ${APP_VERSION}`;
-    </script>
+
+      function updateTodayRecord() {
+          const today = getToday();
+
+          const count =
+            saveData.studyRecord[today] || 0;
+
+          document.getElementById("todayRecord").textContent =
+            `今日は ${count} 問解きました`;
+        }
+
+      updateTodayRecord();
+        </script>
   </body>
 </html>
