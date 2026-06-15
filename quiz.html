@@ -89,6 +89,8 @@ fetch(CSV_URL)
 
             document.getElementById("score").textContent =
               `○: ${correctCount} ×: ${wrongCount}`;
+
+            showQuestion();
           });
 
       document.getElementById("wrong")
@@ -97,6 +99,8 @@ fetch(CSV_URL)
 
             document.getElementById("score").textContent =
               `○: ${correctCount} ×: ${wrongCount}`;
+
+            showQuestion();
           });
     </script>
   </body>
