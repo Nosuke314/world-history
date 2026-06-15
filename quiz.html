@@ -20,6 +20,8 @@
 
     <button id="next">次へ</button>
 
+    <p id="version"></p>
+
     <script>
       let questions = [];
 
@@ -104,7 +106,8 @@ fetch(CSV_URL)
           });
 
       const APP_VERSION = "0.1.0";
-
+      const SAVE_VERSION = 1;
+      
       let saveData =
           JSON.parse(localStorage.getItem("quizApp"));
 
@@ -120,6 +123,8 @@ fetch(CSV_URL)
           );
         }
 
+      document.getElementById("version").textContent =
+          `Version ${APP_VERSION}`;
     </script>
   </body>
 </html>
