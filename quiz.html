@@ -18,6 +18,8 @@
 
     <p id="score">○: 0 ×: 0</p>
 
+    <button id="pause">STOP</button>
+
     <button id="next">次へ</button>
 
     <p id="todayRecord"></p>
@@ -64,8 +66,12 @@ fetch(CSV_URL)
 
           current = questions[index];
 
-          document.getElementById("question").textContent =
-            current.question;
+          currentText = "";
+          currentIndex = 0;
+
+          document.getElementById("question").textContent = "";
+
+          startTyping();
 
           document.getElementById("answer").textContent = "";
         }
@@ -101,6 +107,25 @@ fetch(CSV_URL)
             currentText;
 
         }, 100);
+      }
+
+      document.getElementById("pause")
+        .addEventListener("click", () => {
+
+          if (isPlaying) {
+            clearInterval(timer);
+            isPlaying = false;
+          }
+          else {
+            startTyping();
+          }
+
+        });
+
+      if (isPlaying) {
+        clearInterval(timer);
+        isPlaying = false;
+        this.textContent = "START";
       }
       
       function getToday() {
