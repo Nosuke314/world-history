@@ -244,6 +244,24 @@ fetch(CSV_URL)
         }
 
       updateTodayRecord();
+
+      document.getElementById("quizTab")
+  .addEventListener("click", () => {
+    document.getElementById("quizPage").style.display =
+      "block";
+
+    document.getElementById("recordPage").style.display =
+      "none";
+  });
+
+document.getElementById("recordTab")
+  .addEventListener("click", () => {
+    document.getElementById("quizPage").style.display =
+      "none";
+
+    document.getElementById("recordPage").style.display =
+      "block";
+  });
         </script>
   </body>
 </html>
