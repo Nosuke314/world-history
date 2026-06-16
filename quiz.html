@@ -200,7 +200,29 @@ fetch(CSV_URL)
             JSON.stringify(saveData)
           );
         }
+
+
+      const APP_VERSION = "0.1.1";
+      const SAVE_VERSION = 1;
       
+      let saveData =
+          JSON.parse(localStorage.getItem("quizApp"));
+
+      if (!saveData) {
+          saveData = {
+            version: SAVE_VERSION,
+            studyRecord: {},
+            dailyStatistics: {}
+          };
+
+        const today = getToday();
+
+        if (!saveData.dailyStatistics[today]) {
+          saveData.dailyStatistics[today] = {
+            correct: 0,
+            wrong: 0
+          };
+
       let correctCount =
         saveData.dailyStatistics[today].correct;
 
@@ -220,7 +242,7 @@ fetch(CSV_URL)
 
             saveData.studyRecord[today]++;
 
-            localStotage.setItem(
+            localStorage.setItem(
               "quizApp",
               JSON.stringify(saveData)
               );
@@ -253,27 +275,6 @@ fetch(CSV_URL)
             showQuestion();
             updateChart();
             });
-
-      const APP_VERSION = "0.1.1";
-      const SAVE_VERSION = 1;
-      
-      let saveData =
-          JSON.parse(localStorage.getItem("quizApp"));
-
-      if (!saveData) {
-          saveData = {
-            version: SAVE_VERSION,
-            studyRecord: {},
-            dailyStatistics: {}
-          };
-
-        const today = getToday();
-
-        if (!saveData.dailyStatistics[today]) {
-          saveData.dailyStatistics[today] = {
-            correct: 0,
-            wrong: 0
-          };
 
           localStorage.setItem(
             "quizApp",
