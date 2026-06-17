@@ -214,6 +214,7 @@ fetch(CSV_URL)
             studyRecord: {},
             dailyStatistics: {}
           };
+      }
 
         const today = getToday();
 
@@ -222,6 +223,11 @@ fetch(CSV_URL)
             correct: 0,
             wrong: 0
           };
+        }
+
+      if (!saveData.studyRecode[today]) {
+        saveData.studyRecode[today] = 0;
+      }
 
       let correctCount =
         saveData.dailyStatistics[today].correct;
@@ -248,7 +254,7 @@ fetch(CSV_URL)
               );
 
             document.getElementById("score").textContent =
-              `○: ${correctCount} ×: ${wrongCount};
+              `○: ${correctCount} ×: ${wrongCount}`;
 
             updateTodayRecord();
             showQuestion();
