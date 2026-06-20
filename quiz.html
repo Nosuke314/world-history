@@ -157,10 +157,21 @@ fetch(CSV_URL)
               '#difficultyFilters input:checked'
             )].map(cb => cb.value);
 
+          const filteredQuestions =
+            questions.filter(q =>
+              selectedRanges.includes(q.range) &&
+              selectedDifficulties.includes(q.difficulty)
+            );
+
+          if (filteredQuestions.length === 0) {
+            alert("問題がありません");
+            return;
+          }
+
           let index;
 
           do {
-            index = Math.floor(Math.random() * questions.length);
+            index = Math.floor(Math.random() * filteredQuestion.length);
           } while (index === previousIndex);
 
           previousIndex = index;
