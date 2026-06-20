@@ -148,10 +148,6 @@ fetch(CSV_URL)
 
       function showQuestion() {
 
-        console.log(selectedRanges);
-console.log(selectedDifficulties);
-console.log(filteredQuestions.length);
-
         　const selectedRanges =
             [...document.querySelectorAll(
               '#rangeFilters input:checked'
@@ -168,6 +164,10 @@ console.log(filteredQuestions.length);
               selectedDifficulties.includes(q.difficulty)
             );
 
+        console.log(selectedRanges);
+        console.log(selectedDifficulties);
+        console.log(filteredQuestions.length);
+        
           if (filteredQuestions.length === 0) {
             alert("問題がありません");
             return;
