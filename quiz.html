@@ -147,6 +147,16 @@ fetch(CSV_URL)
 
       function showQuestion() {
 
+        　const selectedRanges =
+            [...document.querySelectorAll(
+              '#rangeFilters input:checked'
+            )].map(cb => cb.value);
+
+          const selectedDifficulties =
+            [...document.querySelectorAll(
+              '#difficultyFilters input:checked'
+            )].map(cb => cb.value);
+
           let index;
 
           do {
