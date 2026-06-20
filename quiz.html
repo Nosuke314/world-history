@@ -216,6 +216,14 @@ fetch(CSV_URL)
           };
       }
 
+      if (!saveData.studyRecord) {
+          saveData.studyRecord = {};
+      }
+
+      if (!saveData.dailyStatistics) {
+          saveData.dailyStatistics = {};
+      }
+      
         const today = getToday();
 
         if (!saveData.dailyStatistics[today]) {
