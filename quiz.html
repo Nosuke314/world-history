@@ -183,7 +183,7 @@ fetch(CSV_URL)
         });
       
       function getToday() {
-          return new Date().toISOString().slice(0, 10);
+          return new Date().toLocaleDateString("ja-JP");
         }
 
       function saveStudyRecord() {
@@ -225,8 +225,8 @@ fetch(CSV_URL)
           };
         }
 
-      if (!saveData.studyRecode[today]) {
-        saveData.studyRecode[today] = 0;
+      if (!saveData.studyRecord[today]) {
+        saveData.studyRecord[today] = 0;
       }
 
       let correctCount =
@@ -286,13 +286,11 @@ fetch(CSV_URL)
             "quizApp",
             JSON.stringify(saveData)
           );
-        }
 
           localStorage.setItem(
             "quizApp",
             JSON.stringify(saveData)
           );
-        }
 
       document.getElementById("version").textContent =
           `Version ${APP_VERSION}`;
