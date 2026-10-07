@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#245c48">
+  <title>世界史 一問一答</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div><p class="eyebrow">WORLD HISTORY</p><h1>世界史 一問一答</h1><p class="subtitle">ひとつずつ、歴史を自分の知識に。</p></div>
+      <span id="version" class="version"></span>
+    </header>
+    <p id="storageNotice" class="notice" role="status" hidden></p>
+    <section id="quizPage" aria-labelledby="quizTab">
+      <div class="daily-status"><span>今日の学習</span><strong id="todayRecord">0 問</strong></div>
+      <div class="status-line"><p id="loadStatus" role="status">問題を読み込んでいます…</p><button id="retry" class="text-button" hidden>再読み込み</button></div>
+      <section class="question-card" aria-label="出題カード">
+        <div class="card-heading"><span class="eyebrow">QUESTION</span><span id="questionMeta" class="badge">準備中</span></div>
+        <p id="question">問題を読み込んでいます…</p>
+        <button id="showAnswer" class="answer-button" disabled>答えを見る</button>
+        <div class="answer-area"><span id="answerLabel" class="eyebrow" hidden>ANSWER</span><p id="answer" aria-live="polite"></p></div>
+      </section>
+      <div class="judge-buttons"><button id="correct" class="correct" disabled><span class="symbol">○</span><span>正解</span></button><button id="wrong" class="wrong" disabled><span class="symbol">×</span><span>不正解</span></button></div>
+      <p id="score" class="score" aria-live="polite">○ 0　 /　 × 0</p>
+      <div class="control-buttons"><button id="pause" disabled>STOP · 一時停止</button><button id="next" disabled>次の問題 →</button></div>
+      <section class="settings" aria-label="出題設定">
+        <div class="section-heading"><h2>出題設定</h2><span>選んだ範囲からランダム出題</span></div>
+        <fieldset><legend>難易度</legend><div id="difficultyFilters" class="filter-list"></div></fieldset>
+        <fieldset><legend>範囲</legend><div id="rangeFilters" class="filter-list"><span class="muted">読み込み中…</span></div></fieldset>
+      </section>
+    </section>
+    <section id="recordPage" aria-labelledby="recordTab" hidden>
+      <div class="section-heading"><h2>学習記録</h2><span id="recordDate"></span></div>
+      <div class="stats-grid"><div class="stat"><span>今日の学習</span><strong id="recordToday">0 問</strong></div><div class="stat"><span>これまでの学習</span><strong id="totalRecord">0 問</strong></div></div>
+      <section class="record-card"><div class="section-heading"><h2>今日の正答率</h2><strong id="accuracy">—</strong></div><div class="chart-container"><canvas id="accuracyChart" role="img" aria-label="今日の正解と不正解の円グラフ"></canvas><p id="chartMessage" class="chart-message">まだ記録がありません</p></div><div class="chart-legend"><span><i class="green-dot"></i>正解 <strong id="recordCorrect">0</strong></span><span><i class="red-dot"></i>不正解 <strong id="recordWrong">0</strong></span></div></section>
+      <p class="record-note">○・×を押すと1問として記録されます。記録はこのブラウザに保存されます。</p>
+    </section>
+    <noscript><p class="notice">このアプリを使うにはJavaScriptを有効にしてください。</p></noscript>
+  </main>
+  <nav id="tabBar" aria-label="ページ切り替え"><div class="tab-inner"><button id="quizTab" class="active" aria-controls="quizPage" aria-current="page"><span aria-hidden="true">▤</span>問題</button><button id="recordTab" aria-controls="recordPage"><span aria-hidden="true">◴</span>記録</button></div></nav>
+</body>
+</html>
